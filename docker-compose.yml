@@ -1,0 +1,24 @@
+services:
+  streamlit:
+    image: python:3.11-slim
+    container_name: streamlit_mongo_app
+
+    working_dir: /app
+
+    ports:
+      - "8501:8501"
+
+    environment:
+      MONGODB_URI: "mongodb+srv://illaricubillas146_db_user:nina123@clusterclase05.yi5xzun.mongodb.net/"
+      DATABASE_NAME: "inventario_db"
+      COLLECTION_NAME: "productos"
+
+    volumes:
+      - ./streamlit:/app
+      - ./streamlit/uploads:/app/uploads
+
+    command: >
+      bash -c "
+      pip install -r requirements.txt &&
+      streamlit run app.py --server.address=0.0.0.0 --server.port=8501
+      "
