@@ -1,10 +1,10 @@
-import os
 from pymongo import MongoClient
+import os
 
-MONGODB_URI = os.getenv("MONGODB_URI")
-DATABASE_NAME = os.getenv("DATABASE_NAME", "inventario_db")
-COLLECTION_NAME = os.getenv("COLLECTION_NAME", "productos")
+MONGODB_URI = os.getenv("MONGO_URL")
 
 client = MongoClient(MONGODB_URI)
-db = client[DATABASE_NAME]
-collection = db[COLLECTION_NAME]
+
+db = client["inventario_db"]
+
+collection = db["productos"]
