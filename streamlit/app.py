@@ -28,7 +28,7 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 # CONEXIÓN A MONGODB
 # ==============================
 
-MONGODB_URI = os.getenv("MONGODB_URI")
+MONGODB_URI = os.getenv("MONGO_URL")
 DATABASE_NAME = os.getenv("DATABASE_NAME")
 COLLECTION_NAME = os.getenv("COLLECTION_NAME")
 
