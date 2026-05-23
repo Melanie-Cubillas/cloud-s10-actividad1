@@ -9,16 +9,30 @@ services:
       - "8501:8501"
 
     environment:
-      MONGODB_URI: "mongodb+srv://illaricubillas146_db_user:nina123@clusterclase05.yi5xzun.mongodb.net/"
+      MONGO_URL: "mongodb://mongo:27017"
       DATABASE_NAME: "inventario_db"
       COLLECTION_NAME: "productos"
 
     volumes:
       - ./streamlit:/app
-      - ./streamlit/uploads:/app/uploads
+      - uploads_data:/app/uploads
 
     command: >
       bash -c "
       pip install -r requirements.txt &&
       streamlit run app.py --server.address=0.0.0.0 --server.port=8501
       "
+
+  mongo:
+    image: mongo:7
+    container_name: mongo_db
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  uploads_data:
+  mongo_data:
